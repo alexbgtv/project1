@@ -1,22 +1,44 @@
-let money = prompt('Ваш бюджет на месяц?'),
+let money = +prompt('Ваш бюджет на месяц?'),
 	time = prompt('Введите дату в формате YYYY-MM-DD'),
 	appData = {
-		'budget': money,
-		'timeData': time,
-		'expenses': {
-			// prompt('Введите обязательную статью расходов в этом месяце') : prompt('Во сколько обойдется?')
-		}
+		budget: money,
+		expenses: {},
+		optionalExpenses: {},
+		income: [],
+		timeData: time,
+		savings: false
 	}
 
-/*
-5) Вывести на экран пользователя бюджет на 1 день (брать месяц за 30 дней, использовать alert)
-6) Проверить, чтобы все работало без ошибок в консоли
-7) Создать свой репозиторий на GitHub и поместить туда папку с первым заданием
-*/
+for (let i = 0; i < 2; i++) {
+	let a = prompt('Введите обязательную статью расхода.', ''),
+		b = +prompt('Во сколько обойдется?', '')
+
+		if ( (typeof(a)) === 'string' && (typeof(a)) != null && (typeof(b)) != null
+			&& a != '' && b != '' && a.length < 50) {
+			appData.expenses[a] = b
+			console.log('done')
+		} else {
+			a = prompt('Введите обязательную статью расхода.', ''),
+			b = +prompt('Во сколько обойдется?', '')
+		}
+}
 
 
-date.insertAdjacentHTML('beforeend', `<span>${time} руб.</span>`)
-budget.insertAdjacentHTML('beforeend', `<span>${money} руб.</span>`)
-dayBudget.insertAdjacentHTML('beforeend', `<span>${money/30} руб.</span>`)
+appData.moneyPerDay = appData.budget / 30
+
+alert(appData.moneyPerDay)
+
+switch (true) {
+	case ( appData.budget > 100000):
+		console.log('богатый клиент')
+		break
+	case (appData.budget < 100000 && appData.budget > 50000):
+		console.log('клиент со средним достатком')
+		break
+	default:
+		console.log('нищеброд:' + appData.budget)
+		break
+}
+
 
 
